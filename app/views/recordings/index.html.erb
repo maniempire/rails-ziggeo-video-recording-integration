@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="//assets-cdn.ziggeo.com/css/ziggeo-v1.css" />
+<script src="//assets-cdn.ziggeo.com/js/ziggeo-v1-nojquery.js"></script>
+<script>ZiggeoApi.token = "<%= ENV['ZIGGEO_API_TOKEN'] %>";</script>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Recordings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sender email</th>
+      <th>Sender video url</th>
+      <th>Receiver email</th>
+      <th>Receiver video url</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @recordings.each do |recording| %>
+      <tr>
+        <td><%= recording.sender_email %></td>
+        <td><%= recording.sender_video_url %></td>
+        <td><%= recording.receiver_email %></td>
+        <td><%= recording.receiver_video_url %></td>
+        <td><%= link_to 'Show', recording %></td>
+        <td><%= link_to 'Edit', edit_recording_path(recording) %></td>
+        <td><%= link_to 'Destroy', recording, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Recording', new_recording_path %>
+<br>
+  <ziggeo ziggeo-width=320
+          ziggeo-height=240 ziggeo-key="mani-video-1">
+  </ziggeo>
+  
+  <br>
+  <ziggeo ziggeo-width=320
+          ziggeo-height=240 ziggeo-video="_mani-video-1">
+  </ziggeo>
+  
+  <script>
+  	ZiggeoApi.Styles.play_button_vertical_align = "top"; // "top" or "bottom"
+  	ZiggeoApi.Styles.play_button_horizontal_align = "left"; // "left" or "right"
+  	//ZiggeoApi.Styles.play_button_class = "ziggeo-play-button"; // "your-custom-css-class"
+  </script>
